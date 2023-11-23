@@ -2,7 +2,7 @@
 
 
 {% block title %}
-{{category_name}}
+{{category_name.category_name}}
 {% endblock title %}
 
 
@@ -14,7 +14,9 @@
         <div class="card">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{product.product_name}}</h5>
+                <h5 class="card-title"><a
+                        href="{% url 'shop:product_info' category_name.slug product.slug%}">{{product.product_name}}</a>
+                </h5>
                 <p class="card-text">{{product.description}}</p>
             </div>
         </div>

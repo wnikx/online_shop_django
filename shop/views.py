@@ -16,4 +16,9 @@ def list_products(request, category_slug):
     list_products = Product.objects.filter(
         category=category_product.id)
     return render(request, 'shop/list_products.html', context={'list_products': list_products,
-                                                               'category_name': category_product.category_name})
+                                                               'category_name': category_product})
+
+
+def product_info(request, category_slug, product_slug):
+    product = Product.objects.get(slug=product_slug)
+    return render(request, 'shop/product_info.html', context={'product': product})
