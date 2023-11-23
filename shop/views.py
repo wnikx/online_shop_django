@@ -9,3 +9,11 @@ def main_page(request):
 def products_categories(request):
     products_categories = Category.objects.all()
     return render(request, 'shop/products_categories.html', context={'categories': products_categories})
+
+
+def list_products(request, category_slug):
+    category_product = Category.objects.get(slug=category_slug)
+    list_products = Product.objects.filter(
+        category=category_product.id)
+    return render(request, 'shop/list_products.html', context={'list_products': list_products,
+                                                               'category_name': category_product.category_name})
