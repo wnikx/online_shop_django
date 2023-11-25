@@ -30,7 +30,7 @@
 
             <span class="navbar-text">
                 {% if request.user.is_authenticated %}
-                Здраствуйте {{ request.user.first_name|default:request.user.username }},
+                Здравствуйте {{ request.user.first_name|default:request.user.username }},
                 <a href="{% url 'account:logout' %}" class="me-2">Выйти</a>
                 {% else %}
                 <a href="{% url 'account:login' %}" class="me-2">Войти</a>
