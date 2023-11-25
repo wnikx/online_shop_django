@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from account.forms import LoginForm
+from django.contrib.auth.decorators import login_required
 
 
 def user_login(request):
@@ -22,4 +23,4 @@ def user_login(request):
                 return HttpResponse('Недопустимый логин')
     else:
         form = LoginForm()
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'registration/login.html', {'form': form})
