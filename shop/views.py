@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from shop.models import Category, Product
+from cart.forms import CartAddProductForm
 
 
 def main_page(request):
@@ -14,11 +15,13 @@ def products_categories(request):
 def list_products(request, category_slug):
     category_product = Category.objects.get(slug=category_slug)
     list_products = Product.objects.filter(
-        category=category_product.id)
+        category=category_product.id, available=True)
     return render(request, 'shop/list_products.html', context={'list_products': list_products,
                                                                'category_name': category_product})
 
 
 def product_info(request, category_slug, product_slug):
-    product = Product.objects.get(slug=product_slug)
-    return render(request, 'shop/product_info.html', context={'product': product})
+    product = get_object_or_404(Product, slug=product_slug, available=True)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'shop/product_info.html', context={'product': product,
+                                                              'cart_product_form': cart_product_form})
