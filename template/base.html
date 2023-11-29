@@ -14,8 +14,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar_custom">
         <div class="container-fluid">
+
             <a class="navbar-brand" href="{% url 'shop:main_page' %}">Цельское молочко</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,17 +42,18 @@
             {% endif %}
             {% endwith %}
         </div>
-        <span class="navbar-text">
+        <span class="navbar-text" style="margin-right: 20px;">
             {% if request.user.is_authenticated %}
             Здравствуйте {{ request.user.first_name|default:request.user.username }},
             <a href="{% url 'account:logout' %}" class="me-2">Выйти</a>
             {% else %}
-            <a href="{% url 'account:login' %}" class="me-2">Войти</a>
+            <a class="btn btn-primary" href="{% url 'account:login' %}" role="button">Войти</a>
             {% endif %}
         </span>
 
         </div>
     </nav>
+
     {% block content %}
 
     {% endblock content %}
