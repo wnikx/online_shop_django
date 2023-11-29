@@ -28,10 +28,21 @@
         <tr>
             <td>
                 <a href="{{product.get_asolute_url}}">
-                    <img src="{{product.image.url}}" alt=""></a>
+                    <img src="{% if product.image %}
+                    {{product.image.url}}
+                    {% else %}
+                    ...
+                    {% endif %}" alt=""></a>
             </td>
             <td>{{product.name}}</td>
-            <td>{{item.quantity}}</td>
+            <td>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {{ item.update_quantity_form.quantity }}
+                    {{ item.update_quantity_form.override }}
+                    <input type="submit" value="Update">
+                    {% csrf_token %}
+                </form>
+            </td>
             <td>
                 <form action="{% url 'cart:cart_remove' product.id %}" method="post">
                     <input type="submit" value="Remove">

@@ -27,15 +27,27 @@
 
                 </div>
             </div>
-
-            <span class="navbar-text">
-                {% if request.user.is_authenticated %}
-                Здравствуйте {{ request.user.first_name|default:request.user.username }},
-                <a href="{% url 'account:logout' %}" class="me-2">Выйти</a>
-                {% else %}
-                <a href="{% url 'account:login' %}" class="me-2">Войти</a>
-                {% endif %}
-            </span>
+            div class="cart">
+            {% with total_items=cart|length %}
+            {% if total_items > 0 %}
+            Your cart:
+            <a href="{% url 'cart:cart_detail' %}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+            </a>
+            {% else %}
+            Your cart is empty.
+            {% endif %}
+            {% endwith %}
+        </div>
+        <span class="navbar-text">
+            {% if request.user.is_authenticated %}
+            Здравствуйте {{ request.user.first_name|default:request.user.username }},
+            <a href="{% url 'account:logout' %}" class="me-2">Выйти</a>
+            {% else %}
+            <a href="{% url 'account:login' %}" class="me-2">Войти</a>
+            {% endif %}
+        </span>
 
         </div>
     </nav>
