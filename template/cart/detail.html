@@ -9,15 +9,13 @@
 
 {% block content %}
 <h1>Твоя корзина покупок</h1>
-<table>
-    <thead>
+<table class="table table-light table-hover table-sm" cellpading="10">
+    <thead class=" table-dark">
         <tr>
-            <th>Изображение</th>
-            <th>Продукт</th>
-            <th>Количество</th>
-            <th>Удаление</th>
-            <th>Цена за единицу</th>
-            <th>Общая стоимость</th>
+            <th scope="col">Продукт</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Удаление</th>
+            <th scope="col">Cтоимость</th>
         </tr>
     </thead>
     <tbody>
@@ -28,13 +26,9 @@
         <tr>
             <td>
                 <a href="{{product.get_asolute_url}}">
-                    <img src="{% if product.image %}
-                    {{product.image.url}}
-                    {% else %}
-                    ...
-                    {% endif %}" alt=""></a>
+                    {{product.product_name}}
+                </a>
             </td>
-            <td>{{product.name}}</td>
             <td>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {{ item.update_quantity_form.quantity }}
@@ -49,20 +43,20 @@
                     {% csrf_token %}
                 </form>
             </td>
-            <td class="num">${{item.price}}</td>
-            <td class="num">${{item.total_price}}</td>
+            <td class="num align-top">${{item.total_price}}</td>
         </tr>
         {% endwith %}
         {% endfor %}
-        <tr class="total">
+        <tr class="">
             <td>Всего</td>
-            <td colspan="4"></td>
-            <td class="num">${{cart.get_total_price}}</td>
+            <td class="num" colspan="3" align="right">${{cart.get_total_price}}</td>
         </tr>
     </tbody>
 </table>
 <p>
-    <a href="{% url 'shop:products' %}">Продолжить покупки</a>
-    <a href="#">Выйти</a>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="{% url 'shop:products' %}"><button type="button" class="btn btn-primary">Продолжить</button></a>
+    <a href="#"><button type="button" class="btn btn-primary" align="right">Выйти</button></a>
+</div>
 </p>
 {% endblock content %}

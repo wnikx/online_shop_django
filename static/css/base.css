@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+  }
+
+  .content {
+    position: relative;
+    z-index: 10000; /* Чтобы контент был над блоком */
+    margin: 0 auto; /* Центрирование блока */
+    width: 50%; /* Ширина блока */
+    padding: 20px; /* Отступы внутри блока */
+    background-color: rgba(233, 222, 222, 0.5); /* Цвет фона блока */
+  }

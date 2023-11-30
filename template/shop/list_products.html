@@ -12,18 +12,22 @@
     {% for product in list_products %}
     <div class="col">
         <div class="card">
-            <img src="
+            <a href="{% url 'shop:product_info' category_name.slug product.slug%}">
+                <img src="
             {% if product.image %}
             {{product.image.url}}
             {% else %}
             ...
             {% endif %}
-                " class="card-img-top" alt="">
+                " class="card-img-top" alt=""></a>
             <div class="card-body">
                 <h5 class="card-title"><a
                         href="{% url 'shop:product_info' category_name.slug product.slug%}">{{product.product_name}}</a>
                 </h5>
-                <p class="card-text">{{product.description}}</p>
+
+                <p class="card-text"><span class="d-inline-block text-truncate" style="max-width: 150px;">
+                        {{product.description}}
+                    </span></p>
             </div>
         </div>
     </div>

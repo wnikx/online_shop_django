@@ -5,7 +5,10 @@ from django.urls import reverse
 class Category(models.Model):
     category_name = models.CharField(
         max_length=200, verbose_name='Имя категории')
+    description = models.TextField(blank=True, verbose_name='Описание')
     slug = models.SlugField(max_length=200, unique=True)
+    image = models.ImageField(upload_to='products',
+                              verbose_name='Изображение', blank=True)
 
     class Meta:
         ordering = ['id']
