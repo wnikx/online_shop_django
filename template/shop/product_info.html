@@ -22,7 +22,7 @@
             <p></p>
             <p>{{product.description}}</p>
             <p>Цена: {{product.price}}</p>
-            <form class="form-label" action="{% url 'cart:cart_add' product.id %}" method="post">
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
                 {{cart_product_form}}
                 {% csrf_token %}
                 <p></p>

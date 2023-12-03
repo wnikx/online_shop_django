@@ -29,30 +29,35 @@
 
                     </div>
                 </div>
-                div class="cart">
-                {% with total_items=cart|length %}
-                {% if total_items > 0 %}
-                Your cart:
-                <a href="{% url 'cart:cart_detail' %}">
-                    {{ total_items }} item{{ total_items|pluralize }},
-                    ${{ cart.get_total_price }}
-                </a>
-                {% else %}
-                Your cart is empty.
-                {% endif %}
-                {% endwith %}
-            </div>
-            <span class="navbar-text" style="margin-right: 20px;">
-                {% if request.user.is_authenticated %}
-                Здравствуйте {{ request.user.first_name|default:request.user.username }},
-                <a href="{% url 'account:logout' %}" class="me-2">Выйти</a>
-                {% else %}
-                <a class="btn btn-primary" href="{% url 'account:login' %}" role="button">Войти</a>
-                {% endif %}
-            </span>
-    </div>
+                <div style="margin-right: 20px;">
+                    {% with total_items=cart|length %}
+                    {% if total_items > 0 %}
+                    <a href="{% url 'cart:cart_detail' %}">
+                        <button type="button" class="btn btn-primary">
+                            Корзина
+                            <span class="position-absolute badge rounded-pill bg-danger">{{total_items}}</span>
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'cart:cart_detail' %}">
+                        <button type="button" class="btn btn-primary">
+                            Твоя корзина пуста
+                        </button></a>
+                    {% endif %}
+                    {% endwith %}
 
-    </nav>
+                </div>
+                <span class="navbar-text" style="margin-right: 20px;">
+                    {% if request.user.is_authenticated %}
+                    Здравствуйте {{ request.user.first_name|default:request.user.username }},
+                    <a href="{% url 'account:logout' %}" class="me-2">Выйти</a>
+                    {% else %}
+                    <a class="btn btn-primary" href="{% url 'account:login' %}" role="button">Войти</a>
+                    {% endif %}
+                </span>
+            </div>
+
+        </nav>
     </div>
     <div class="content">
         {% block content %}
