@@ -58,7 +58,8 @@
 <p>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a href="{% url 'shop:products' %}"><button type="button" class="btn btn-primary">Продолжить</button></a>
-    <a href="#"><button type="button" class="btn btn-primary" align="right">Оформить заказ</button></a>
+    <a href="{% url 'orders:order_create' %}"><button type="button" class="btn btn-primary" align="right">Оформить
+            заказ</button></a>
 </div>
 </p>
 {% endblock content %}

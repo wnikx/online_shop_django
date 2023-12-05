@@ -56,8 +56,6 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
-
-def get_absolute_url(self):
-    print("я тут")
-    print(self.сategory.slug)
-    return reverse('shop:product_info', kwargs={"category_slug": self.сategory.slug, "product_slug": self.slug})
+    def get_absolute_url(self):
+        category_slug = Category.objects.get(id=self.category_id).slug
+        return reverse('shop:product_info', kwargs={"category_slug": category_slug, "product_slug": self.slug})
