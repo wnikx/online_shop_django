@@ -7,6 +7,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=50, verbose_name='Фамилия')
     address = models.CharField(max_length=250, verbose_name='Адрес')
     city = models.CharField(max_length=100, verbose_name='Город')
+    email = models.EmailField(verbose_name='Почта', blank=True, null=True)
     created = models.DateField(auto_now_add=True, verbose_name='Создан')
     updated = models.DateField(auto_now=True, verbose_name='Обновлен')
     paid = models.BooleanField(default=False, verbose_name='Оплачен')
