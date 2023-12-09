@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap_tags %}
 
 {% block title %}
 {{product.product_name}}
@@ -23,14 +24,17 @@
             <p>{{product.description}}</p>
             <p>Цена: {{product.price}}</p>
             <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{cart_product_form}}
-                {% csrf_token %}
-                <p></p>
-                <p></p>
-                <input class="form-label btn btn-primary" type="submit" value="Добавить в корзину">
+                <div class="col-sm">
+                    {{cart_product_form|as_bootstrap}}
+                    {% csrf_token %}
+                    <p></p>
+                    <p></p>
+                    <input class="form-label btn btn-primary" type="submit" value="Добавить в корзину" width="1px">
+                </div>
             </form>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock content %}

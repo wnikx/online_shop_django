@@ -21,8 +21,8 @@
             {% endif %}
                 " class="card-img-top" alt=""></a>
             <div class="card-body">
-                <h5 class="card-title"><a
-                        href="{% url 'shop:product_info' category_name.slug product.slug%}">{{product.product_name}}</a>
+                <h5 class="card-title"><a href="{% url 'shop:product_info' category_name.slug product.slug%}"
+                        class="text-decoration-none">{{product.product_name}}</a>
                 </h5>
 
                 <p class="card-text"><span class="d-inline-block text-truncate" style="max-width: 150px;">

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'social_django',
     'django_extensions',
+    'django_forms_bootstrap',
+
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'base.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'template'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -134,7 +136,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'shop:main_page'
-LOGIN_URL = 'login'
+LOGIN_URL = 'account:login'
 LOGOUT_URL = 'logout'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

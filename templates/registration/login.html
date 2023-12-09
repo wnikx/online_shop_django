@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+Войдите в систему
+{% endblock title %}
+
+
+
+{% block content %}
+<h1>Авторизация</h1>
+
+{% if form.errors %}
+<p>Ваш логин или пароль указаны не верно.
+    Попробуйте ещё раз.
+</p>
+{% else %}
+<p></p>
+{% endif %}
+<div class="mb-3" style="margin-inline: 50px; margin-top: 50px;">
+    <div class="d-grid gap-1 col-5 mx-auto">
+        <a href="{% url 'social:begin' 'google-oauth2'%}" class="btn btn-outline-danger" role="button">
+            <img src="{% static 'img/google_logo.png' %}" alt="" width="24" height="24"
+                class="d-inline-block align-text-top">
+            Google
+
+        </a>
+        <div class="border-bottom border-dark" style="margin-top: 20px;">
+
+        </div>
+    </div>
+    <div class="mb-2" style="margin-inline: 100px; margin-top: 10px;">
+        <form action="{% url 'account:login' %}" method="post" style="margin-top: 40px;">
+            {{form|as_bootstrap}}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{next}}" />
+            <p><input type="submit" value="Войти" style="margin-top: 20px;" class="btn btn-primary"></p>
+        </form>
+        <p>
+            <a href="{% url 'account:password_reset' %}" class="text-decoration-none">
+                Забыли пароль?
+            </a>
+        </p>
+    </div>
+
+</div>
+{% endblock content %}

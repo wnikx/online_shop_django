@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 
 
 {% block title %}
@@ -7,15 +8,15 @@
 
 
 {% block content %}
-<p class="h1" style="color: white;">Ваш заказ:</p>
+<p class="h1" style="color: rgb(0, 0, 0);">Ваш заказ:</p>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-6">
             <form method="post">
                 {% csrf_token %}
-                {{form.as_p}}
+                {{form|as_bootstrap}}
 
-                <button class="btn btn-primary" type="submit">Оформить заказ</button>
+                <button class="btn btn-primary" type="submit" style="margin-top: 20px;">Оформить заказ</button>
 
         </div>
         </form>
@@ -32,7 +33,7 @@
                     </li>
 
                     {% endfor %}
-                    <p>Всего: {{ cart.get_total_price }}</p>
+                    <p style="text-align: end;">Всего: {{ cart.get_total_price }}</p>
                 </ul>
             </div>
         </div>
