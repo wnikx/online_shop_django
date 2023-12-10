@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+
+{% block title %}
+Регистрация
+{% endblock title %}
+
+{% block content %}
+<h1>Регистрация</h1>
+
+<form method="post">
+
+    <div class="row">
+        <div class="col-7">
+            {{user_form|as_bootstrap}}
+            {% csrf_token %}
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Зарегистрироваться" style="margin-top: 20px;">
+</form>
+{% endblock content %}
