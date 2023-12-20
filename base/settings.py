@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'django_forms_bootstrap',
+    'rest_framework',
 
 ]
 
@@ -161,3 +162,9 @@ SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
