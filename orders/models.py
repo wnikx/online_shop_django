@@ -11,6 +11,8 @@ class Order(models.Model):
     created = models.DateField(auto_now_add=True, verbose_name='Создан')
     updated = models.DateField(auto_now=True, verbose_name='Обновлен')
     paid = models.BooleanField(default=False, verbose_name='Оплачен')
+    order_detail = models.ManyToManyField(
+        Product, through='OrderItem', verbose_name='Детали заказа')
 
     class Meta:
         ordering = ['-created']

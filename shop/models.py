@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from .managers import CustomManager
 
 
 class Category(models.Model):
@@ -59,3 +60,15 @@ class Product(models.Model):
     def get_absolute_url(self):
         category_slug = Category.objects.get(id=self.category_id).slug
         return reverse('shop:product_info', kwargs={"category_slug": category_slug, "product_slug": self.slug})
+
+
+class ExtraManager(models.Model):
+    manager = CustomManager()
+
+    class Meta:
+        abstract = True
+
+
+class AvailableProduct(Product, ExtraManager):
+    class Meta:
+        proxy = True

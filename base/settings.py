@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_forms_bootstrap',
     'rest_framework',
+    'debug_toolbar'
 
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -168,3 +170,13 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+CASHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.PyMemcacheCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+    }
+}
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

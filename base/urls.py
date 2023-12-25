@@ -27,6 +27,7 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('social-auth/', include('social_django.urls')),
     path('api/', include('shop.api.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
     path('', include('shop.urls')),
 ]
 
