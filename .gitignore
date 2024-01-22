@@ -3,3 +3,4 @@ __pycache__
 .vscode
 passwords.py
 scripts
+online_shop_django.json

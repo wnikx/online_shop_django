@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from shop.models import Category, Product
 from cart.forms import CartAddProductForm
+from django.core.cache import cache
 
 
 def main_page(request):
@@ -8,7 +9,10 @@ def main_page(request):
 
 
 def products_categories(request):
-    products_categories = Category.objects.all()
+    products_categories = cache.get('all_categories')
+    if not products_categories:
+        products_categories = Category.objects.all()
+        cache.set('all_categories', products_categories)
     return render(request, 'shop/products_categories.html', context={'categories': products_categories})
 
 
